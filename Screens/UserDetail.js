@@ -33,8 +33,11 @@ class UserDetail extends React.Component {
       followers: "NotAvailable",
     };
   }
+  
   async componentDidMount() {
-    var value = this.props.route.params;
+
+    this.props.navigation.addListener('focus', async() => {
+      var value = this.props.route.params;
    
     const response = await listing.getUser(value.name);
 
@@ -48,7 +51,6 @@ class UserDetail extends React.Component {
       bio,
       followers,
     } = response.data;
-    console.log(avatar_url);
     this.setState({
       imageURL: avatar_url,
       name: name,
@@ -59,6 +61,8 @@ class UserDetail extends React.Component {
       bio: bio,
       followers: followers,
     });
+    });
+   
   }
 
   render() {

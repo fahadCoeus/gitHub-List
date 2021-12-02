@@ -32,7 +32,9 @@ class MainApp extends React.Component {
       userDisplayed: 0,
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+  
+  }
   setStateOfParent = async (value) => {
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
@@ -44,10 +46,9 @@ class MainApp extends React.Component {
   render() {
     const getUser = async () => {
       try {
-        console.log("check");
+    
         const response = await listing.getListings(this.state.searchValue, 1);
         if (response.ok) {
-          console.log(response);
           this.setState({
             error: false,
             users: response.data.items,
@@ -57,7 +58,6 @@ class MainApp extends React.Component {
           });
         }
       } catch (error) {
-        console.log(error);
         this.setstate({ error: true });
       }
     };
@@ -82,7 +82,6 @@ class MainApp extends React.Component {
           }
         }
       } catch (error) {
-        console.log(error);
         this.setstate({ error: true });
       }
     };
@@ -91,6 +90,9 @@ class MainApp extends React.Component {
       <SafeAreaView style={{ backgroundColor: "white"}}>
         <AppBar
           style={styles.container}
+          isSearch={true}
+          title={"Home"}
+         
           setStateOfParent={async (value) => {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
@@ -98,6 +100,8 @@ class MainApp extends React.Component {
               getUser();
             }, 300);
           }}
+          navigation={this.props.navigation}
+         
         />
         <LinearGradient
           colors={["rgb(246,246,246)", "rgb(255,255,255)"]}

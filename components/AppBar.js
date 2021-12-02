@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet,} from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchUser from "./SearchUser";
 class AppBar extends React.Component {
@@ -10,16 +10,23 @@ class AppBar extends React.Component {
   handleClick = (value) => {
     this.props.setStateOfParent(value);
   };
+  componentDidMount(){
+    
+    // this.props.navigation.toggleDrawer()
+    // this.props.navigation.toggleDrawer()
+  }
 
   render() {
     return (
       <View style={styles.container}>
+        <TouchableOpacity onPress={()=>this.props.navigation.toggleDrawer()}>
         <MaterialCommunityIcons
           name="format-list-bulleted"
           size={25}
           color="#b5b5b5"
         />
-        <SearchUser setValue={this.handleClick} />
+        </TouchableOpacity>
+        <SearchUser setValue={this.handleClick} title={this.props.title} isSearch={this.props.isSearch}/>
       </View>
     );
   }

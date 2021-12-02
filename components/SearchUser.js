@@ -19,6 +19,9 @@ class SearchUser extends React.Component {
   focusInputWithKeyboard() {
     this.textInput.focus()
   }
+  componentDidMount(){
+  
+  }
   render() {
     return (
       <View
@@ -30,17 +33,20 @@ class SearchUser extends React.Component {
         {this.state.showSearchBox ? (
           <>
             <View style={styles.search}>
-              <Text style={styles.mainHeading}>Contacts</Text>
+              <Text style={styles.mainHeading}>{this.props.title}</Text>
             </View>
+            {this.props.isSearch &&
             <TouchableWithoutFeedback
               onPress={() => {  this.buildNameTextInput = true;
                 this.setState({ showSearchBox: false })}}
             >
               <MaterialIcons name="search" size={25} color="#b5b5b5" />
             </TouchableWithoutFeedback>
+  }
           </>
         ) : (
           <>
+         
             <View style={styles.search}>
               <TextInput
               autoFocus={!!this.buildNameTextInput}
@@ -49,12 +55,16 @@ class SearchUser extends React.Component {
                 ref={this.buildNameTextInput}
                 onChangeText={this.props.setValue}
               />
+          
               <TouchableWithoutFeedback
                 onPress={() => this.setState({ showSearchBox: true })}
               >
+                
                 <MaterialIcons name="close" size={25} color="#b5b5b5" />
               </TouchableWithoutFeedback>
+  
             </View>
+
           </>
         )}
       </View>
