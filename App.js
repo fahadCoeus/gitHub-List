@@ -18,7 +18,6 @@ class App extends React.Component {
             component={MainApp}
             options={{
               headerShown: false,
-              tabBarLabel: "Account",
             }}
           />
           <Stack.Screen
@@ -26,7 +25,7 @@ class App extends React.Component {
             component={UserDetail}
             options={{
               headerShown: false,
-              tabBarLabel: "Account",
+    
             }}
           />
         </Stack.Navigator>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet,} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchUser from "./SearchUser";
 class AppBar extends React.Component {
@@ -17,7 +17,7 @@ class AppBar extends React.Component {
         <MaterialCommunityIcons
           name="format-list-bulleted"
           size={25}
-          color="#E4E5E7"
+          color="#b5b5b5"
         />
         <SearchUser setValue={this.handleClick} />
       </View>

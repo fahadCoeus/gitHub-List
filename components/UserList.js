@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableWithoutFeedbackBase, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedbackBase,
+  TouchableOpacity,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 class UserList extends React.Component {
   constructor(props) {
@@ -7,21 +15,46 @@ class UserList extends React.Component {
   }
   render() {
     return (
-    
       <View style={styles.container}>
-          
         <View style={styles.ImageBorder}>
-          <Image source={{ uri: this.props.image }} style={styles.ImageStyle}></Image>
-          {this.props.online?<View style={{height:12,width:12,backgroundColor:"green",borderRadius:8,position:"absolute",alignSelf:"flex-end",bottom:10,}}/>:<View style={{height:12,width:12,backgroundColor:"red",borderRadius:8,position:"absolute",alignSelf:"flex-end",bottom:10,}}/>}
-          
+          <Image
+            source={{ uri: this.props.image }}
+            style={styles.ImageStyle}
+          ></Image>
+          {this.props.online ? (
+            <View
+              style={{
+                height: 12,
+                width: 12,
+                backgroundColor: "green",
+                borderRadius: 8,
+                position: "absolute",
+                alignSelf: "flex-end",
+                bottom: 10,
+              }}
+            />
+          ) : (
+            <View
+              style={{
+                height: 12,
+                width: 12,
+                backgroundColor: "red",
+                borderRadius: 8,
+                position: "absolute",
+                alignSelf: "flex-end",
+                bottom: 10,
+              }}
+            />
+          )}
         </View>
         <View style={styles.sideInformation}>
           <Text style={styles.heading}>{this.props.name}</Text>
           <Text style={styles.description}>{this.props.description}</Text>
-
+        </View>
+        <View style={{justifyContent:"center",width:"100%",flex:1}}>
+          <Text><MaterialIcons name="keyboard-arrow-right" size={20} style={{alignSelf:"center"}}/></Text>
         </View>
       </View>
-   
     );
   }
 }
@@ -42,6 +75,7 @@ const styles = StyleSheet.create({
   sideInformation: {
     flexDirection: "column",
     paddingLeft: 15,
+    flex:6
   },
   heading: {
     fontWeight: "500",

@@ -14,8 +14,11 @@ class SearchUser extends React.Component {
     this.state = {
       showSearchBox: true,
     };
+    this.buildNameTextInput = React.createRef();
   }
-
+  focusInputWithKeyboard() {
+    this.textInput.focus()
+  }
   render() {
     return (
       <View
@@ -30,23 +33,26 @@ class SearchUser extends React.Component {
               <Text style={styles.mainHeading}>Contacts</Text>
             </View>
             <TouchableWithoutFeedback
-              onPress={() => this.setState({ showSearchBox: false })}
+              onPress={() => {  this.buildNameTextInput = true;
+                this.setState({ showSearchBox: false })}}
             >
-              <MaterialIcons name="search" size={25} color="#E4E5E7" />
+              <MaterialIcons name="search" size={25} color="#b5b5b5" />
             </TouchableWithoutFeedback>
           </>
         ) : (
           <>
             <View style={styles.search}>
               <TextInput
+              autoFocus={!!this.buildNameTextInput}
                 style={styles.textInput}
                 placeholder="Enter your text"
+                ref={this.buildNameTextInput}
                 onChangeText={this.props.setValue}
               />
               <TouchableWithoutFeedback
                 onPress={() => this.setState({ showSearchBox: true })}
               >
-                <MaterialIcons name="close" size={25} color="#E4E5E7" />
+                <MaterialIcons name="close" size={25} color="#b5b5b5" />
               </TouchableWithoutFeedback>
             </View>
           </>
@@ -70,6 +76,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
-  mainHeading: { color: "#0c0c0c", fontSize: 20, textAlign: "center", flex: 1 },
+  mainHeading: { color: "#6c6969", fontSize: 20, textAlign: "center", flex: 1 },
 });
 export default SearchUser;

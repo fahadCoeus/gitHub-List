@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import {
   MaterialCommunityIcons,
@@ -16,7 +17,7 @@ import {
 import axios from "axios";
 import listing from "../api/userList";
 import AccountInfo from "../components/AccountInfo";
-import Clipboard from '@react-native-community/clipboard';
+import Clipboard from "@react-native-community/clipboard";
 class UserDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -34,10 +35,7 @@ class UserDetail extends React.Component {
   }
   async componentDidMount() {
     var value = this.props.route.params;
-    //  https://api.github.com/users/junaid-umar
-    // const response = await axios.get(
-    //   `https://api.github.com/users/${value.name}`
-    // );
+   
     const response = await listing.getUser(value.name);
 
     const {
@@ -65,11 +63,13 @@ class UserDetail extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.screens}>
+      <View style={styles.screens}>
+        <StatusBar barStyle="light-content" />
         <View style={styles.topBar}>
           <View style={styles.container}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Home")}
+              style={{ width: 30 }}
             >
               <MaterialCommunityIcons
                 name="keyboard-backspace"
@@ -87,11 +87,14 @@ class UserDetail extends React.Component {
             <Text style={{ fontSize: 28, fontWeight: "600", marginTop: 30 }}>
               {this.state.name}
             </Text>
-            <View
-              style={styles.userId}
-            >
+            <View style={styles.userId}>
               <Text
-                style={{ fontSize: 14, fontWeight: "200", marginRight: 10 }}
+                style={{
+                  fontSize: 14,
+                  fontWeight: "300",
+                  marginRight: 10,
+                  color: "#b5b5b5",
+                }}
               >
                 {this.state.id}
               </Text>
@@ -101,9 +104,7 @@ class UserDetail extends React.Component {
                 size={16}
               />
             </View>
-            <View
-              style={styles.line}
-            />
+            <View style={styles.line} />
             <View
               style={{
                 width: "100%",
@@ -111,24 +112,51 @@ class UserDetail extends React.Component {
                 paddingBottom: 10,
               }}
             >
-              <Text style={{ fontSize: 20, fontWeight: "500" }}>
+              <Text
+                style={{ fontSize: 20, fontWeight: "500", color: "#51505b" }}
+              >
                 Account Info
               </Text>
             </View>
-            
-            <ScrollView>
-              <View style={{ marginLeft: 0, width: "100%" }}>
-              <AccountInfo iconType="MaterialCommunityIcons" iconName="office-building" name="Company" description={this.state.company}/>
-              <AccountInfo iconType="Entypo" iconName="location-pin" name="Location" description={this.state.location}/>
-              <AccountInfo iconType="MaterialCommunityIcons" iconName="bio" name="Bio" description={this.state.bio}/>
-              <AccountInfo iconType="MaterialCommunityIcons" iconName="source-repository" name="Public_repos" description={this.state.repos}/>
-              <AccountInfo iconType="SimpleLineIcons" iconName="user-following" name="Followers" description={this.state.followers}/>
-              
-              </View>
-            </ScrollView>
+            <View style={{width:"100%"}}>
+              <ScrollView>
+                <View style={{ marginLeft: 0, width: "100%" }}>
+                  <AccountInfo
+                    iconType="MaterialCommunityIcons"
+                    iconName="office-building"
+                    name="Company"
+                    description={this.state.company}
+                  />
+                  <AccountInfo
+                    iconType="Entypo"
+                    iconName="location-pin"
+                    name="Location"
+                    description={this.state.location}
+                  />
+                  <AccountInfo
+                    iconType="MaterialCommunityIcons"
+                    iconName="bio"
+                    name="Bio"
+                    description={this.state.bio}
+                  />
+                  <AccountInfo
+                    iconType="MaterialCommunityIcons"
+                    iconName="source-repository"
+                    name="Public_repos"
+                    description={this.state.repos}
+                  />
+                  <AccountInfo
+                    iconType="SimpleLineIcons"
+                    iconName="user-following"
+                    name="Followers"
+                    description={this.state.followers}
+                  />
+                </View>
+              </ScrollView>
+            </View>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -163,12 +191,13 @@ const styles = StyleSheet.create({
     width: 280,
   },
   screens: {
-    backgroundColor: "white",
-    flexDirection: "column",
+    backgroundColor: "#6446BD",
+    paddingTop: 25,
   },
   topBar: {
     flexDirection: "column",
     height: "100%",
+    backgroundColor: "white",
   },
   mainText: {
     color: "white",
@@ -187,16 +216,17 @@ const styles = StyleSheet.create({
     borderRadius: 70,
     marginTop: -70,
   },
-  userId:{
+  userId: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
   },
-  line:{
+  line: {
     height: 0.3,
     backgroundColor: "#868686",
-    width: "90%",
+    marginLeft: 15,
+    width: "100%",
     marginTop: 40,
-  }
+  },
 });
 export default UserDetail;

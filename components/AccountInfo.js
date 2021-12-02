@@ -12,29 +12,29 @@ class AccountInfo extends React.Component {
                 <View style={styles.listContainer}>
                   <View
                     style={{
-                      width: 60,
-                      height: 60,
-                      borderRadius: 30,
-                      backgroundColor: "#6464BD",
+                      width: 40,
+                      height: 40,
+                      borderRadius: 20,
+                      backgroundColor: "#6446BD",
                       justifyContent: "center",
                       alignItems: "center",
                     }}
                   >{this.props.iconType=="MaterialCommunityIcons"&&
                     <MaterialCommunityIcons
                       name={this.props.iconName}
-                      size={40}
+                      size={28}
                       color="white"
                     />}
                     {this.props.iconType=="Entypo"&&
                     <Entypo name="location-pin" 
-                    size={40} 
+                    size={28} 
                     color="white"
                     />
                     }
                     {this.props.iconType=="SimpleLineIcons"&&
                          <SimpleLineIcons
                          name="user-following"
-                         size={40}
+                         size={25}
                          color="white"
                        />
                     }
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     listContainer: {
         flexDirection: "row",
         padding: "3%",
-        paddingLeft: "4%",
+        paddingLeft: "6%",
       },
     
       sideInformation: {
@@ -67,15 +67,13 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
       },
       heading: {
-        fontWeight: "500",
+        fontWeight: "500",   
         fontSize: 18,
-        fontSize: 20,
       },
       description: {
         marginTop: "2%",
-        fontSize: 15,
-        color: "#868686",
-        width: 280,
+        fontSize: 12,
+        color: "#868686",   
       },
 })
 export default AccountInfo
