@@ -33,36 +33,34 @@ class UserDetail extends React.Component {
       followers: "NotAvailable",
     };
   }
-  
+
   async componentDidMount() {
-
-    this.props.navigation.addListener('focus', async() => {
+    this.props.navigation.addListener("focus", async () => {
       var value = this.props.route.params;
-   
-    const response = await listing.getUser(value.name);
 
-    const {
-      avatar_url,
-      name,
-      node_id,
-      company,
-      public_repos,
-      location,
-      bio,
-      followers,
-    } = response.data;
-    this.setState({
-      imageURL: avatar_url,
-      name: name,
-      id: node_id,
-      company: company,
-      repos: public_repos,
-      location: location,
-      bio: bio,
-      followers: followers,
+      const response = await listing.getUser(value.name);
+
+      const {
+        avatar_url,
+        name,
+        node_id,
+        company,
+        public_repos,
+        location,
+        bio,
+        followers,
+      } = response.data;
+      this.setState({
+        imageURL: avatar_url,
+        name: name,
+        id: node_id,
+        company: company,
+        repos: public_repos,
+        location: location,
+        bio: bio,
+        followers: followers,
+      });
     });
-    });
-   
   }
 
   render() {
@@ -122,7 +120,7 @@ class UserDetail extends React.Component {
                 Account Info
               </Text>
             </View>
-            <View style={{width:"100%"}}>
+            <View style={{ width: "100%" }}>
               <ScrollView>
                 <View style={{ marginLeft: 0, width: "100%" }}>
                   <AccountInfo

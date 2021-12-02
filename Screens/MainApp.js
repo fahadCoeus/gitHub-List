@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import axios from "axios";
 import AppBar from "../components/AppBar";
 import UserList from "../components/UserList";
 import listing from "../api/userList";
@@ -25,16 +24,12 @@ class MainApp extends React.Component {
       fetch: false,
       page: 0,
       showspinner: false,
-      typing: false,
-      typingTimeout: 0,
       sendUserRequest: false,
       totalUsers: 0,
       userDisplayed: 0,
     };
   }
-  componentDidMount() {
-  
-  }
+  componentDidMount() {}
   setStateOfParent = async (value) => {
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
@@ -46,7 +41,6 @@ class MainApp extends React.Component {
   render() {
     const getUser = async () => {
       try {
-    
         const response = await listing.getListings(this.state.searchValue, 1);
         if (response.ok) {
           this.setState({
@@ -87,12 +81,11 @@ class MainApp extends React.Component {
     };
 
     return (
-      <SafeAreaView style={{ backgroundColor: "white"}}>
+      <SafeAreaView style={{ backgroundColor: "white" }}>
         <AppBar
           style={styles.container}
           isSearch={true}
           title={"Home"}
-         
           setStateOfParent={async (value) => {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
@@ -101,7 +94,6 @@ class MainApp extends React.Component {
             }, 300);
           }}
           navigation={this.props.navigation}
-         
         />
         <LinearGradient
           colors={["rgb(246,246,246)", "rgb(255,255,255)"]}

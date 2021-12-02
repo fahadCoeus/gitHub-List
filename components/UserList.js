@@ -10,9 +10,6 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 class UserList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -51,8 +48,14 @@ class UserList extends React.Component {
           <Text style={styles.heading}>{this.props.name}</Text>
           <Text style={styles.description}>{this.props.description}</Text>
         </View>
-        <View style={{justifyContent:"center",width:"100%",flex:1}}>
-          <Text><MaterialIcons name="keyboard-arrow-right" size={20} style={{alignSelf:"center"}}/></Text>
+        <View style={{ justifyContent: "center", width: "100%", flex: 1 }}>
+          <Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={20}
+              style={{ alignSelf: "center" }}
+            />
+          </Text>
         </View>
       </View>
     );
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
   sideInformation: {
     flexDirection: "column",
     paddingLeft: 15,
-    flex:6
+    flex: 6,
   },
   heading: {
     fontWeight: "500",
