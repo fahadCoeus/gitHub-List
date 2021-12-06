@@ -6,6 +6,7 @@ import UserDetail from "./Screens/UserDetail";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import SideBar from "./components/SideBar";
 import MoreInfo from "./Screens/MoreInfo";
+import GitInformation from "./Screens/GitInformation";
 const Drawer = createDrawerNavigator();
 class App extends React.Component {
   render() {
@@ -38,6 +39,14 @@ class App extends React.Component {
           <Drawer.Screen
             name="MoreInfo"
             component={MoreInfo}
+            options={{
+              headerShown: false,
+              drawerType: "front",
+            }}
+          />
+          <Drawer.Screen
+            name="GitInformation"
+            component={GitInformation}
             options={{
               headerShown: false,
               drawerType: "front",

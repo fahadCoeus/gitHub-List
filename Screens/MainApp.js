@@ -27,6 +27,7 @@ class MainApp extends React.Component {
       sendUserRequest: false,
       totalUsers: 0,
       userDisplayed: 0,
+      getUpdate:false,
     };
   }
   componentDidMount() {}
@@ -34,7 +35,6 @@ class MainApp extends React.Component {
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.setState({ searchValue: value });
-      this.setState({ page: 2 });
     }, 1000);
   };
 
@@ -57,9 +57,12 @@ class MainApp extends React.Component {
     };
     const updateUSer = async () => {
       try {
-        if (!this.state.sendUserRequest) {
-          this.setState({ showspinner: true, sendUserRequest: true });
-
+    
+        this.setState({ sendUserRequest: false,showspinner:true})
+        if (this.state.sendUserRequest) {
+            
+          console.log("end")
+ 
           const response = await listing.getListings(
             this.state.searchValue,
             this.state.page + 1
@@ -68,7 +71,7 @@ class MainApp extends React.Component {
             this.setState({
               error: false,
               users: [...this.state.users, ...response.data.items],
-              sendUserRequest: false,
+              endUserRequest: false,
               showspinner: false,
               page: this.state.page + 1,
               userDisplayed: (this.state.page + 1) * 30,
@@ -76,10 +79,10 @@ class MainApp extends React.Component {
           }
         }
       } catch (error) {
-        this.setstate({ error: true });
+        this.setState({ error: true });
       }
     };
-
+  
     return (
       <SafeAreaView style={{ backgroundColor: "white" }}>
         <AppBar
@@ -122,7 +125,8 @@ class MainApp extends React.Component {
             )}
             refreshing={this.state.fetch}
             onRefresh={async () => getUser()}
-            onMomentumScrollEnd={async () => updateUSer()}
+            onMomentumScrollBegin={()=>this.setState( {sendUserRequest: true})}
+            onEndReached={async () => updateUSer()}
           />
         </View>
         {this.state.showspinner && (

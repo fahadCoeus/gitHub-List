@@ -61,6 +61,40 @@ class BottomArea extends React.Component {
               More Info
             </Text>
           </View>
+          
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("GitInformation")}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 20,
+            }}
+          >
+            <MaterialCommunityIcons
+              name="git"
+              color={
+                this.props.state.routeNames[this.props.state.index] ==
+                "GitInformation"
+                  ? "#3a66c7"
+                  : "#b9b6bd"
+              }
+              size={35}
+            />
+            <Text
+              style={
+                this.props.state.routeNames[this.props.state.index] ==
+                "GitInformation"
+                  ? styles.slectedOption
+                  : styles.unSelectedColor
+              }
+            >
+             Git Information
+            </Text>
+          </View>
+          
         </TouchableOpacity>
       </View>
     );

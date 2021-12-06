@@ -8,6 +8,8 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
 import {
   MaterialCommunityIcons,
@@ -31,6 +33,7 @@ class UserDetail extends React.Component {
       bio: "NotAvailable",
       repos: "NotAvailable",
       followers: "NotAvailable",
+      isLoading: true,
     };
   }
 
@@ -39,31 +42,74 @@ class UserDetail extends React.Component {
       var value = this.props.route.params;
 
       const response = await listing.getUser(value.name);
-
-      const {
-        avatar_url,
-        name,
-        node_id,
-        company,
-        public_repos,
-        location,
-        bio,
-        followers,
-      } = response.data;
-      this.setState({
-        imageURL: avatar_url,
-        name: name,
-        id: node_id,
-        company: company,
-        repos: public_repos,
-        location: location,
-        bio: bio,
-        followers: followers,
-      });
+      if (response.ok) {
+        const {
+          avatar_url,
+          name,
+          node_id,
+          company,
+          public_repos,
+          location,
+          bio,
+          followers,
+        } = response.data;
+        this.setState({
+          imageURL: avatar_url,
+          name: name,
+          id: node_id,
+          company: company,
+          repos: public_repos,
+          location: location,
+          bio: bio,
+          followers: followers,
+          isLoading: false,
+        });
+      }
     });
   }
 
   render() {
+    const AcountInfoText = [
+      {
+        iconType: "MaterialCommunityIcons",
+        iconName: "office-building",
+        name: "Company",
+        description: this.state.company,
+      },
+      {
+        iconType: "Entypo",
+        iconName: "location-pin",
+        name: "Location",
+        description: this.state.location,
+      },
+      {
+        iconType: "MaterialCommunityIcons",
+        iconName: "bio",
+        name: "Bio",
+        description: this.state.bio,
+      },
+      {
+        iconType: "MaterialCommunityIcons",
+        iconName: "source-repository",
+        name: "Public_repos",
+        description: this.state.repos,
+      },
+      {
+        iconType: "SimpleLineIcons",
+        iconName: "user-following",
+        name: "Followers",
+        description: this.state.followers,
+      },
+    ];
+    if (this.state.isLoading) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          style={styles.indicator}
+          size="large"
+        />
+      );
+    }
     return (
       <View style={styles.screens}>
         <StatusBar barStyle="light-content" />
@@ -121,40 +167,17 @@ class UserDetail extends React.Component {
               </Text>
             </View>
             <View style={{ width: "100%" }}>
-              <ScrollView>
-                <View style={{ marginLeft: 0, width: "100%" }}>
+              <View style={{ marginLeft: 0, width: "100%" }}>
+                {AcountInfoText.map((item, index) => (
                   <AccountInfo
-                    iconType="MaterialCommunityIcons"
-                    iconName="office-building"
-                    name="Company"
-                    description={this.state.company}
+                    iconType={item.iconType}
+                    iconName={item.iconName}
+                    name={item.name}
+                    description={item.description}
+                    key={index}
                   />
-                  <AccountInfo
-                    iconType="Entypo"
-                    iconName="location-pin"
-                    name="Location"
-                    description={this.state.location}
-                  />
-                  <AccountInfo
-                    iconType="MaterialCommunityIcons"
-                    iconName="bio"
-                    name="Bio"
-                    description={this.state.bio}
-                  />
-                  <AccountInfo
-                    iconType="MaterialCommunityIcons"
-                    iconName="source-repository"
-                    name="Public_repos"
-                    description={this.state.repos}
-                  />
-                  <AccountInfo
-                    iconType="SimpleLineIcons"
-                    iconName="user-following"
-                    name="Followers"
-                    description={this.state.followers}
-                  />
-                </View>
-              </ScrollView>
+                ))}
+              </View>
             </View>
           </View>
         </View>
@@ -229,6 +252,12 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     width: "100%",
     marginTop: 40,
+  },
+  indicator: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 80,
   },
 });
 export default UserDetail;
