@@ -11,6 +11,7 @@
 #import <React/RCTViewManager.h>
 //#import "RNTDatePicker.h"
 #import <React/RCTConvert.h>
+#import "MyDatePicker.h"
 @interface RNTMapManager : RCTViewManager
 @end
 
@@ -18,14 +19,19 @@
 
 RCT_EXPORT_MODULE(UIDatePicker)
 
-RCT_EXPORT_VIEW_PROPERTY(onchange,RCTBubblingEventBlock)
+
 
 - (UIView *)view
 {
+//  UIDatePicker *dp = [[UIDatePicker alloc] init];
+//  datePickerValueChanged( dp.allTargets;
+  return [[MyDatePicker alloc] init];
 
-  return [[UIDatePicker alloc] init];
-
+//  datePickerValueChanged(dp.allTargets);
 }
+RCT_EXPORT_VIEW_PROPERTY(date, NSDate)
+
+RCT_EXPORT_VIEW_PROPERTY(onChange,RCTBubblingEventBlock)
 
 
 @end

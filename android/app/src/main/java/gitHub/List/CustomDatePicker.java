@@ -11,24 +11,27 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
-public class MyCustomView extends DatePicker {
+public class CustomDatePicker extends DatePicker {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public MyCustomView(Context context) {
+    public CustomDatePicker(Context context) {
         super(context);
-        super.setOnDateChangedListener(new OnDateChangedListener() {
+
+        super.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
-            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+            public void onDateChanged(DatePicker datePicker, int year, int month, int date) {
+
+                String result = String.valueOf(date)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
                 WritableMap event = Arguments.createMap();
+                event.putString("getDate", result);
                 ReactContext reactContext = (ReactContext)getContext();
                 reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                         getId(),
                         "onDateChanged",
                         event);
             }
+
         });
     }
-
-
 
 }

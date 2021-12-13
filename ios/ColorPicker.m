@@ -1,12 +1,7 @@
-//
-//  ColorPicker.m
-//  gitHubList
-//
-//  Created by Muhammad Fahad on 08/12/2021.
-//
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
-#import "ColorPicker.h"
-
-@implementation ColorPicker
-
+@interface RCT_EXTERN_MODULE(ColorPicker, NSObject)
+RCT_EXTERN_METHOD(picker:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 @end

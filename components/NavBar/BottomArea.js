@@ -96,6 +96,105 @@ class BottomArea extends React.Component {
           </View>
           
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("ChangeColor")}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 20,
+            }}
+          >
+            <MaterialCommunityIcons
+              name="nativescript"
+              color={
+                this.props.state.routeNames[this.props.state.index] ==
+                "ChangeColor"
+                  ? "#3a66c7"
+                  : "#b9b6bd"
+              }
+              size={35}
+            />
+            <Text
+              style={
+                this.props.state.routeNames[this.props.state.index] ==
+                "ChangeColor"
+                  ? styles.slectedOption
+                  : styles.unSelectedColor
+              }
+            >
+          Native Modules
+            </Text>
+          </View>
+          
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("DatePicker")}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 20,
+            }}
+          >
+            <MaterialCommunityIcons
+              name="nativescript"
+              color={
+                this.props.state.routeNames[this.props.state.index] ==
+                "DatePicker"
+                  ? "#3a66c7"
+                  : "#b9b6bd"
+              }
+              size={35}
+            />
+            <Text
+              style={
+                this.props.state.routeNames[this.props.state.index] ==
+                "DatePicker"
+                  ? styles.slectedOption
+                  : styles.unSelectedColor
+              }
+            >
+          Date Picker
+            </Text>
+          </View>
+          
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Slider")}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 20,
+            }}
+          >
+            <MaterialCommunityIcons
+              name="nativescript"
+              color={
+                this.props.state.routeNames[this.props.state.index] ==
+                "Slider"
+                  ? "#3a66c7"
+                  : "#b9b6bd"
+              }
+              size={35}
+            />
+            <Text
+              style={
+                this.props.state.routeNames[this.props.state.index] ==
+                "Slider"
+                  ? styles.slectedOption
+                  : styles.unSelectedColor
+              }
+            >
+            IOS Library
+            </Text>
+          </View>
+          
+        </TouchableOpacity>
       </View>
     );
   }

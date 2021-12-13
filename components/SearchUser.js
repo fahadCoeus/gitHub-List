@@ -22,7 +22,7 @@ class SearchUser extends React.Component {
       <View
         style={[
           styles.container,
-          { alignItems: !this.state.showSearchBox && "flex-start" },
+          { alignItems: "flex-start" },
         ]}
       >
         {this.state.showSearchBox ? (

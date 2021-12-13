@@ -8,14 +8,15 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class MyAppPackage implements ReactPackage {
+public class DatePickerPackage implements ReactPackage {
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-        return null;
-    }
+
+        return Collections.emptyList();    }
 
     @NonNull
     @Override
@@ -27,10 +28,3 @@ public class MyAppPackage implements ReactPackage {
     }
 }
 
-
-//    public List<ViewManager> createViewManagers(
-//            ReactApplicationContext reactContext) {
-//
-//
-////        return null;
-//    }

@@ -5,12 +5,6 @@
 //  Created by Muhammad Fahad on 06/12/2021.
 //
 
-#import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface RNHello : NSObject
-
+#import <React/RCTBridgeModule.h>
+@interface RNHello : NSObject <RCTBridgeModule>
 @end
-
-NS_ASSUME_NONNULL_END
