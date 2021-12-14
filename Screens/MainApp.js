@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import axios from "axios";
 import AppBar from "../components/AppBar";
 import UserList from "../components/UserList";
 import listing from "../api/userList";
@@ -25,11 +24,10 @@ class MainApp extends React.Component {
       fetch: false,
       page: 0,
       showspinner: false,
-      typing: false,
-      typingTimeout: 0,
       sendUserRequest: false,
       totalUsers: 0,
       userDisplayed: 0,
+      getUpdate:false,
     };
   }
   componentDidMount() {}
@@ -37,17 +35,14 @@ class MainApp extends React.Component {
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.setState({ searchValue: value });
-      this.setState({ page: 2 });
     }, 1000);
   };
 
   render() {
     const getUser = async () => {
       try {
-        console.log("check");
         const response = await listing.getListings(this.state.searchValue, 1);
         if (response.ok) {
-          console.log(response);
           this.setState({
             error: false,
             users: response.data.items,
@@ -57,15 +52,17 @@ class MainApp extends React.Component {
           });
         }
       } catch (error) {
-        console.log(error);
         this.setstate({ error: true });
       }
     };
     const updateUSer = async () => {
       try {
-        if (!this.state.sendUserRequest) {
-          this.setState({ showspinner: true, sendUserRequest: true });
-
+    
+        this.setState({ sendUserRequest: false,showspinner:true})
+        if (this.state.sendUserRequest) {
+            
+          console.log("end")
+ 
           const response = await listing.getListings(
             this.state.searchValue,
             this.state.page + 1
@@ -74,7 +71,7 @@ class MainApp extends React.Component {
             this.setState({
               error: false,
               users: [...this.state.users, ...response.data.items],
-              sendUserRequest: false,
+              endUserRequest: false,
               showspinner: false,
               page: this.state.page + 1,
               userDisplayed: (this.state.page + 1) * 30,
@@ -82,15 +79,16 @@ class MainApp extends React.Component {
           }
         }
       } catch (error) {
-        console.log(error);
-        this.setstate({ error: true });
+        this.setState({ error: true });
       }
     };
-
+  
     return (
-      <SafeAreaView style={{ backgroundColor: "white"}}>
+      <SafeAreaView style={{ backgroundColor: "white" }}>
         <AppBar
           style={styles.container}
+          isSearch={true}
+          title={"Home"}
           setStateOfParent={async (value) => {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
@@ -98,6 +96,7 @@ class MainApp extends React.Component {
               getUser();
             }, 300);
           }}
+          navigation={this.props.navigation}
         />
         <LinearGradient
           colors={["rgb(246,246,246)", "rgb(255,255,255)"]}
@@ -126,7 +125,8 @@ class MainApp extends React.Component {
             )}
             refreshing={this.state.fetch}
             onRefresh={async () => getUser()}
-            onMomentumScrollEnd={async () => updateUSer()}
+            onMomentumScrollBegin={()=>this.setState( {sendUserRequest: true})}
+            onEndReached={async () => updateUSer()}
           />
         </View>
         {this.state.showspinner && (

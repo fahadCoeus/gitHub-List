@@ -16,39 +16,42 @@ class SearchUser extends React.Component {
     };
     this.buildNameTextInput = React.createRef();
   }
-  focusInputWithKeyboard() {
-    this.textInput.focus()
-  }
+
   render() {
     return (
       <View
         style={[
           styles.container,
-          { alignItems: !this.state.showSearchBox && "flex-start" },
+          { alignItems: "flex-start" },
         ]}
       >
         {this.state.showSearchBox ? (
           <>
             <View style={styles.search}>
-              <Text style={styles.mainHeading}>Contacts</Text>
+              <Text style={styles.mainHeading}>{this.props.title}</Text>
             </View>
-            <TouchableWithoutFeedback
-              onPress={() => {  this.buildNameTextInput = true;
-                this.setState({ showSearchBox: false })}}
-            >
-              <MaterialIcons name="search" size={25} color="#b5b5b5" />
-            </TouchableWithoutFeedback>
+            {this.props.isSearch && (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  this.buildNameTextInput = true;
+                  this.setState({ showSearchBox: false });
+                }}
+              >
+                <MaterialIcons name="search" size={25} color="#b5b5b5" />
+              </TouchableWithoutFeedback>
+            )}
           </>
         ) : (
           <>
             <View style={styles.search}>
               <TextInput
-              autoFocus={!!this.buildNameTextInput}
+                autoFocus={!!this.buildNameTextInput}
                 style={styles.textInput}
                 placeholder="Enter your text"
                 ref={this.buildNameTextInput}
                 onChangeText={this.props.setValue}
               />
+
               <TouchableWithoutFeedback
                 onPress={() => this.setState({ showSearchBox: true })}
               >
