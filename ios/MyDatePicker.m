@@ -20,6 +20,7 @@
 
 - (void)didChange:(MyDatePicker*)sender {
   if (sender.onChange) {
+    self.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     sender.onChange(@{ @"changedDate": @(self.date.timeIntervalSince1970 * 1000.0) });
   }
 }

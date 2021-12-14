@@ -1,6 +1,5 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - CHIPageControl/Aji (0.2)
   - DoubleConversion (1.1.6)
   - EXApplication (4.0.0):
     - ExpoModulesCore
@@ -343,7 +342,6 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
-  - CHIPageControl/Aji
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
@@ -399,7 +397,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - CHIPageControl
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -503,7 +500,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   EXApplication: 4e001850816f38eb4812cb02fe059974daeafe4d
   EXConstants: 66361ff23b5ea7eae3684ffad0f15955c23b5134
@@ -554,6 +550,6 @@ SPEC CHECKSUMS:
   RNScreens: 6e1ea5787989f92b0671049b808aef64fa1ef98c
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: 851b27a9cd7110c0a926aa393860c98023c66b26
+PODFILE CHECKSUM: 2c470f97e33b4c92e628f6981af145756638f293
 
 COCOAPODS: 1.11.2

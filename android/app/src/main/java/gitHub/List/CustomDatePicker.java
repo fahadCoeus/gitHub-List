@@ -21,7 +21,7 @@ public class CustomDatePicker extends DatePicker {
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int date) {
 
-                String result = String.valueOf(date)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+                String result = String.valueOf(date)+"/"+String.valueOf(month+1)+"/"+String.valueOf(year);
                 WritableMap event = Arguments.createMap();
                 event.putString("getDate", result);
                 ReactContext reactContext = (ReactContext)getContext();

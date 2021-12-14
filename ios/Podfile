@@ -15,7 +15,7 @@ target 'gitHubList' do
     :path => config[:reactNativePath],
     :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes'
   )
-
+  # pod 'CHIPageControl/Aji'
   # Uncomment to opt-in to using Flipper
   #
   # if !ENV['CI']
@@ -37,5 +37,4 @@ target 'gitHubList' do
       end
     end
   end
-pod 'CHIPageControl/Aji'
 end
